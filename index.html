@@ -1,26 +1,136 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Crypto AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #0B0E14;
-      color: white;
+      background: #0F172A;
+      color: #E5E7EB;
+    }
+
+    /* HEADER */
+    header {
+      padding: 40px 20px;
+      border-bottom: 1px solid #1E293B;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    nav h1 {
+      font-size: 24px;
+      color: #22C55E;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      cursor: pointer;
+      color: #E5E7EB;
+      opacity: 0.8;
+    }
+
+    nav ul li:hover {
+      opacity: 1;
+      color: #22C55E;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      opacity: 0.85;
+      font-size: 18px;
+    }
+
+    /* CARDS */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #1E293B;
+      border-radius: 12px;
+      padding: 20px;
       text-align: center;
     }
-    header {
-      padding: 60px 20px;
+
+    .card h3 {
+      margin-bottom: 10px;
     }
-    h1 {
-      font-size: 42px;
+
+    .price {
+      font-size: 22px;
+      color: #22C55E;
     }
-    section {
-      padding: 40px 20px;
+
+    /* CONVERTER */
+    .converter {
+      max-width: 500px;
+      margin: 80px auto;
+      background: #1E293B;
+      padding: 30px;
+      border-radius: 12px;
+    }
+
+    .converter h3 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .converter input,
+    .converter select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 18px;
+      color: #22C55E;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      opacity: 0.5;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -28,28 +138,83 @@
 <body>
 
 <header>
-  <h1>Crypto AI</h1>
-  <p>Plateforme crypto en temps réel</p>
+  <nav>
+    <h1>Crypto AI</h1>
+    <ul>
+      <li>Accueil</li>
+      <li>Marché</li>
+      <li>Simulateur</li>
+      <li>À propos</li>
+    </ul>
+  </nav>
 </header>
 
-<section>
-  <!-- FLUX CRYPTO ICI -->
-  <iframe 
-    src="https://s.tradingview.com/embed-widget/ticker-tape/?locale=fr#{
-    %22symbols%22:[
-      {%22proName%22:%22BINANCE:BTCUSDT%22,%22title%22:%22Bitcoin%22},
-      {%22proName%22:%22BINANCE:ETHUSDT%22,%22title%22:%22Ethereum%22},
-      {%22proName%22:%22BINANCE:SOLUSDT%22,%22title%22:%22Solana%22}
-    ],
-    %22colorTheme%22:%22dark%22,
-    %22isTransparent%22:true,
-    %22displayMode%22:%22adaptive%22
-  }"
-    width="100%"
-    height="60"
-    frameborder="0">
-  </iframe>
+<section class="hero">
+  <h2>Comprendre. Simuler. Analyser.</h2>
+  <p>
+    Crypto AI est une plateforme éducative pour comprendre les cryptomonnaies
+    et simuler des investissements sans risque.
+  </p>
 </section>
+
+<section class="cards">
+  <div class="card">
+    <h3>Bitcoin</h3>
+    <div class="price">88 000 €</div>
+  </div>
+
+  <div class="card">
+    <h3>Ethereum</h3>
+    <div class="price">2 980 €</div>
+  </div>
+
+  <div class="card">
+    <h3>Solana</h3>
+    <div class="price">125 €</div>
+  </div>
+</section>
+
+<section class="converter">
+  <h3>Simulateur d'achat</h3>
+
+  <input type="number" id="amount" placeholder="Montant en €" />
+
+  <select id="crypto">
+    <option value="88000">Bitcoin</option>
+    <option value="2980">Ethereum</option>
+    <option value="125">Solana</option>
+  </select>
+
+  <div class="result" id="result">—</div>
+</section>
+
+<footer>
+  © Crypto AI — plateforme éducative (simulation)
+</footer>
+
+<script>
+  const amountInput = document.getElementById("amount");
+  const cryptoSelect = document.getElementById("crypto");
+  const result = document.getElementById("result");
+
+  function calculate() {
+    const amount = parseFloat(amountInput.value);
+    const price = parseFloat(cryptoSelect.value);
+
+    if (!amount || amount <= 0) {
+      result.textContent = "—";
+      return;
+    }
+
+    const cryptoAmount = amount / price;
+    result.textContent =
+      "Vous pouvez obtenir : " + cryptoAmount.toFixed(6);
+  }
+
+  amountInput.addEventListener("input", calculate);
+  cryptoSelect.addEventListener("change", calculate);
+</script>
 
 </body>
 </html>
+
