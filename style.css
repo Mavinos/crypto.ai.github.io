@@ -1,1 +1,164 @@
+:root {
+  --blue-night: #0B1220;
+  --blue-electric: #2563EB;
+  --text-main: #FFFFFF;
+  --text-sub: #CBD5E1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
+}
+
+body {
+  background: var(--blue-night);
+  color: var(--text-main);
+}
+
+/* HEADER */
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(10px);
+  background: rgba(11,18,32,0.6);
+  z-index: 100;
+}
+
+.nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+}
+
+.auth button {
+  background: var(--blue-electric);
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  color: white;
+}
+
+/* SECTIONS AVEC IMAGE */
+.section-bg {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(11,18,32,.85), rgba(11,18,32,.95)),
+    var(--bg) center/cover no-repeat;
+  display: flex;
+  align-items: center;
+}
+
+/* HERO */
+.hero-content {
+  max-width: 800px;
+  margin-left: 10%;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  color: var(--text-sub);
+  font-size: 1.2rem;
+}
+
+/* CTA */
+.cta {
+  margin-top: 30px;
+  display: flex;
+  gap: 15px;
+}
+
+.primary {
+  background: var(--blue-electric);
+  border: none;
+  padding: 14px 24px;
+  border-radius: 10px;
+}
+
+.secondary {
+  background: transparent;
+  border: 1px solid var(--text-sub);
+  padding: 14px 24px;
+  border-radius: 10px;
+  color: var(--text-sub);
+}
+
+/* SECTIONS */
+.section {
+  padding: 120px 20px;
+}
+
+.light {
+  background: #F8FAFC;
+  color: #0B1220;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.subtitle {
+  margin-top: 10px;
+  color: #64748B;
+}
+
+/* CARTES */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.crypto-card {
+  background: var(--blue-night);
+  padding: 20px;
+  border-radius: 16px;
+}
+
+.chart-placeholder {
+  margin-top: 15px;
+  height: 120px;
+  background: linear-gradient(
+    to bottom,
+    rgba(37,99,235,.4),
+    rgba(11,18,32,1)
+  );
+  border-radius: 12px;
+}
+
+/* ANIMATIONS */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+footer {
+  padding: 40px;
+  text-align: center;
+  font-size: 14px;
+  color: #94A3B8;
+}
 
